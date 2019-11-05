@@ -1,0 +1,278 @@
+Django (web Framework)
+
+Quem Usa?
+-> Instagram, Mozila, The Washington Times, Pinterest
+Não é um CMS
+-> Joomla, Wordpress
+-> Menos Flexibilidade
+	
+Possui modulos de url,segurança, administração e também trabalha bem com micro frameworks 
+Empresas que usam python e django
+	Youtube
+	Dropbox
+	Google
+	Bitly
+	Reddit
+	Yahoo
+	Pinterest
+	Instagram
+	Spotfy
+	Firefox
+	NASA
+	Bitbucket
+	EventBright
+
+Configuração de Ambiente
+IDE
+	Sublime 
+	Pycharm
+	VSCode
+
+Virtual-ENV
+	Isolar dependencias
+	Já vem instalado com o python em ambas as versões dos sistemas operacionais
+
+Criando uma VENV
+
+	python3 -m venv nomedavenv
+
+Ativando um Ambiente Virtual
+	source nome_venv/bin/activate
+	desativando uma venv => deactivate
+Instalando Django
+	pip3 install django
+
+Startando um projeto
+
+	django-admin startproject nome_projeto
+
+Estrutura de um Projeto Django
+
+
+manage.py => utilitario de linha de comando
+
+pacote python
+	__init__.py 
+	url.py => arquivo para gestao de urls
+	wsgi.py => produção
+	settings.py 
+		- Secret KEY
+		- Debug
+		- Lista de Dominios
+		- Instaled APPS
+		- Middlewares => request/response vai passar pela pilha do django
+		- Configurações do sistemas de urls
+		-Templates
+Criando um Banco de dados
+	Python manage.py _______
+	Comandos para criar um BD
+	
+		- migrate : Cria/atualiza o Banco de Dados
+		- createsuperuser:Cria um superusuário
+
+Rodando um servidor
+	 Python manage.py runserver
+	 -> starta um servidor web que roda o django
+
+Django Admin
+
+	-> Tudo vem pro django admin
+	-> 2 Classes pre-definidas
+	-> Usuário e Grupos => interface amigavel e simples 
+
+Request Cycle LIFE
+	A web funciona através do modelo request/response
+Request
+	Browser -> FF,Chrome,Safari
+	WebServer ->  AWS ...
+	WSGI -> Python-Server
+	Request(middleware)->
+	URL -> Essa url existe?
+	View ->(middleware)
+	View -> Controlador
+	Models-> BD e Lógica
+	Template(middleware) -> Template -> Renderizar HTML
+Response -> 
+	WSGI -> Conversa com nginx/apache
+	Browser ->
+
+
+Views
+Definições
+	URL -> View
+	View -> Model,Template
+	É equivalente ao controler do MVC
+	*Skinny Controlers(Views) fat Models - Problema de design patterns
+Response HTML para server
+	 render()
+	 HttpReponse() 
+Funcionamento  
+	Request é processada e a sua respectiva url deve ser encontrada no urls.py edirecionada para sua respectiva view no arquivo views.py
+Maneiras de usar Views
+	Function Based View
+		-> Simples e poderosas
+
+	def nome_funcao(request):
+		deve retornar uma response ou um httpresponse	
+	Class Based View
+		-> Complexas e poderosas
+
+Criando Aplicativos
+Definição:	
+	- Django é baseado em apps, simplificando, app são módulos, os quais tem função específica e estão dentro de um projeto, que já foi criado anteriormente.
+
+	- Não é usual ter views dentro do projeto, e sim dentro de um projeto
+
+Como Criar apps?
+	- python3 manage.py startapp clientes
+Estrutura de um app
+	__init__.py
+	admin.py
+	apps.py
+	models.py
+	tests.py
+	views.py
+Como vincular um app no projeto?
+
+	-> Registrar url no arquivo do projeto url.py
+	-> Registrar na lista de apps instalados em settings.py
+	
+Models 
+
+	-> Classe python que herda uma serie de atributos do ORM (Object Relationship Model)
+	-> Banco de dados do Sistema 
+		- SQLite3
+			*sem suporte para concorrência
+		- Postgress
+		- MySql
+
+	class Cliente(models.Model):
+		(tipos de campos)
+		nome =models.CharField()
+		endereco = models.CharField()
+		salario = models.DecimalField(max_digits= 10,decimal_places= 2)
+		idade = models.IntegerField()
+		email = models.EmailField()
+		enderecos = models.ManyToManyField(Enderecos, blank = True, null = True)
+
+	def __str__(self):
+		#retorna o nome do objetos com o nome dele
+		return self.nome
+
+	Registo do Model no 	settings.py installed apps
+ migrate
+ makemigrations
+
+Foreign Keys (Chaves Estrangeiras)
+
+		Como fazer relacionamentos entre tabelas utilizando chaves estrangeiras?
+
+		- Seguindo na linha dos clientes precisamos atribuir alguns telefones para ele, dessa maneira podemos criar uma classe para representar tal relacionamento
+	Exemplo
+
+class Telefone(models.Model):
+	residencial = models.CharField()
+	descrição = models.CharField()
+	celular = models.Charfield()
+	cliente = models.ForeignKey(Cliente)	
+
+	def __str__(self):
+		return self.descricao + '' + self.numero
+
+OneToOneFields (1-1)
+	
+class CPF(models.Model):
+	numero = models.CharField()
+	data_exp = models.DateField(auto_now=False)
+	cpf = models.OneToOneField(Cliente)
+
+	def __str__(self):
+		return self.numero
+
+ManyToMany (n-m)
+	class Enderecos(models.Model):
+	rua = models.CharField()
+	
+	def __str__(self):
+		return self.rua 
+
+
+Registrando models no ADMIN
+
+	- Como fazer com que um app possa aparecer no admin? 
+
+	- É necessário registrar ele no admin da própria aplicação
+
+	- Admin.py 
+		-> importar nome do model (import .model from Cliens)
+		-> admin.site.register(Cliente)
+
+Persoalização do admin - é importante 	disponibilizar um ambiente produtivo para o meu admin! Assim iremos fazer algumas personalizações 
+
+
+
+class ClientesAdmin(admin.ModelAdmin):
+	#fields (campos disponiveis)
+	fields = ('nome','endereco')
+	
+	#list_display(quais campos irão aparecer na minha grid inicial)
+	list_display = ('id','nome','email','endereco')
+
+	#list_filter(cria um filtro na lista)
+	list_filter = ('endereco')
+	#search_filter()
+	search_filter = ('id','nome','email','departamentos__nome')
+
+admin.site.register(Cliente,ClientesAdmin)
+
+
+Templates
+Config para utilizar templates 
+	
+	Settings -> Templates -> DIRS(onde o django guarda os templates, preencher com o nome da pasta)
+	
+	-> Criar uma pasta com o mesmo nome do DIRS no mesmo nivel do projeto e do app
+	-> Criar um index.html dentro do diretorio 
+	-> Dentro da view
+	from Django.shortcuts import render
+
+	Class Cliente(request):
+		minha_variavel = 'teste'
+		return render(request,'index.html', {'variavel':minha_variavel})
+ 
+
+Como enviar informação view para template
+		Na view 
+			- declarar uma variavel
+			- passar como parametro um dicionário com um conjunto de dados para serem renderizados no template
+		No Template 
+			{{ minha_variavel}}
+
+Templates Condicionais
+	- IF e ELSE dentro de um template
+	- multiplas comparacoes
+		{% if sexo == 'm' and sexo == 'M'%}
+	- {% if sexo  == 'm'%}
+		ola senhor {{nome}}
+	  {%elif sexo == 'f' %}
+	  	ola senhora {{nome}}
+	  {%else %}
+	  	ola {{nome}}
+	  {%endif%}
+
+Herança de templates	  
+ Vamos criar uma base HTML 
+ <html>
+ 	<head>
+ 	</head>	
+ 	<body>
+ 		{% block main %}
+ 		{% endblock %}
+ 	</body>
+
+ </html>
+
+ Na view que usaremos como referencia colocaraemos
+ {% extends 'base.html'%} 
+ add bootstrap
+

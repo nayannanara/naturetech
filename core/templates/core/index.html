@@ -1,0 +1,282 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br" >
+<head>
+  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="description" content="Wyden Tech Jr">
+    <meta name="keywords" content="WEB, MOBILE, TREINAMENTO">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyden Tech Jr - Empresa de Desenvolvimento de Software</title>
+
+  <title>Wyden Tech Jr</title>
+
+ <link rel="stylesheet"  href="{% static 'css/style.css'%}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+
+</head>
+<body>
+
+<div class="container topic">
+    <div class="open">
+        <h2 class="question">ENTRE EM CONTATO<span class="ptag"></span></h2>
+    <span class="faq-t"></span>
+</div>
+
+<section class="container">
+
+<form  class="answer" action="{% url 'core_contato_novo' %}" method="POST" onSubmit="return confirm('Enviado com sucesso')">
+    {% csrf_token %}
+    <fieldset>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome Completo" maxlength="40" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">E-mail</label>
+          <input type="text" class="form-control" name="email" id="email" placeholder="E-mail" maxlength="40" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="telefone">Telefone</label>
+          <input type="text" class="telefone form-control" name="telefone" id="telefone" placeholder="(00) 00000-0000" maxlength="15" required>
+        </div>
+        <div class="form-group col-md-6">
+        <label for="mensagem">Mensagem</label>
+        <textarea class="form-control" id="mensagem" name="mensagem" rows="3" placeholder="Deixe aqui sua mensagem" required></textarea>
+      </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="reset" class="btn btn-danger">Apagar</button>
+
+  </fieldset >
+</form>
+      <div class="topic">
+            <div class="open">
+              <h2 class="question">ENVIE SEU CURRÍCULO<span class="ptag"></span></h2>
+              <span class="faq-t"></span>
+            </div>
+     <form class="answer" action="{% url 'core_candidato_novo' %}" enctype="multipart/form-data" method="POST" onSubmit="return confirm('Enviado com sucesso')">
+    {% csrf_token %}
+          <fieldset id="cadastro">
+    <legend>Dados Pessoais</legend>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" name="nome" placeholder="Nome Completo" maxlength="50" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">E-mail</label>
+          <input type="email" class="form-control" name="email" placeholder="E-mail" maxlength="50" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="nacionalidade">Nacionalidade</label>
+          <select class="form-control" id="nacionalidade" name="nacionalidade" required>
+              <option value="">Selecione aqui</option>
+              <option value="Brasileiro">Brasileiro</option>
+              <option value="Estrangeiro">Estrangeiro</option>
+        </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="cpf">CPF</label>
+          <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" onkeypress="validaCPF()" maxlength="11" required>
+        </div>
+          <div class="form-group col-md-3">
+          <label for="telefone">Celular</label>
+          <input type="text" class="telefone form-control" name="telefone" placeholder="(00) 00000-0000" maxlength="15" required>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="data_nascimento">Data de nascimento</label>
+          <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" placeholder="dd/mm/yyyy" required>
+        </div>
+
+      </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="genero">Gênero</label>
+          <select class="form-control" id="genero" name="genero" required>
+              <option value="">Selecione aqui</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
+              <option value="Outros">Outros</option>
+        </select>
+        </div>
+       <div class="form-group col-md-6">
+          <label for="estado_civil">Estado Civil</label>
+          <select class="form-control" id="estado_civil" name="estado_civil" required>
+              <option value="">Selecione aqui</option>
+              <option value="Casado(a)">Casado(a)</option>
+              <option value="Solteiro(a)">Solteiro(a)</option>
+              <option value="Viúvo(a)">Viúvo(a)</option>
+              <option value="Divorciado">Divorciado</option>
+              <option value="União estável">União estável</option>
+        </select>
+        </div>
+    </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="deficiencia">Possui alguma deficiência?</label>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="deficiencia" value="Sim">
+            <label class="form-check-label" for="deficiencia">Sim</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="deficiencia" id="deficiencia" value="Não" checked>
+            <label class="form-check-label" for="deficiencia">Não</label>
+        </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="tipo_deficiencia">Qual o tipo de deficiência?</label>
+          <select class="form-control" id="tipo_deficiencia" name="tipo_deficiencia">
+              <option value="">Selecione aqui</option>
+              <option value="Auditiva">Auditiva</option>
+              <option value="Visual">Visual</option>
+              <option value="Fala">Fala</option>
+              <option value="Física">Física</option>
+              <option value="Outros">Outros</option>
+        </select>
+        </div>
+      </div>
+    </fieldset>
+      <fieldset>
+      <legend>Endereço</legend>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cep">CEP</label>
+          <input type="text" class="form-control" name="cep "id="cep" maxlength="10" onkeypress="mascara(this, '#####-###')" placeholder="00000-000" autofocus required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="logradouro">Logradouro</label>
+          <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="Logradouro" maxlength="40" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="numero">Número</label>
+          <input type="number" class="form-control" name="numero "id="numero" placeholder="Número" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="complemento">Complemento</label>
+          <input type="text" class="form-control" name="complemento" id="complemento" placeholder="Complemento" maxlength="60" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="bairro">Bairro</label>
+          <input type="text" class="form-control" name="bairro" id="bairro" readonly placeholder="Bairro" maxlength="25" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="estado" >Estado</label>
+          <input type="text" class="form-control" name="estado "id="estado" readonly placeholder="Estado" maxlength="3" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cidade">Cidade</label>
+          <input type="text" class="form-control" name="cidade" id="cidade" readonly placeholder="Cidade" maxlength="30" required>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+        <legend>Dados Acadêmicos</legend>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="matricula">Matrícula</label>
+          <input type="text" class="form-control" name="matricula "id="matricula" placeholder="Matrícula" maxlength="20" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="curso">Curso</label>
+          <select class="form-control" id="curso" name="curso" required>
+              <option value="">Selecione aqui</option>
+              <option value="Administração">Administração</option>
+              <option value="Análise e Desenvolvimento de Sistemas">Análise e Desenvolvimento de Sistemas</option>
+              <option value="Arquitetura e Urbanismo<">Arquitetura e Urbanismo</option>
+              <option value="Biomedicina">Biomedicina</option>
+              <option value="Ciências Contábeis">Ciências Contábeis</option>
+              <option value="Design de Interiores">Design de Interiores</option>
+              <option value="Design de Moda">Design de Moda</option>
+              <option value="Design de Produto">Design de Produto</option>
+              <option value="Design Gráfico<">Design Gráfico</option>
+              <option value="Direito">Direito</option>
+              <option value="Educação Física">Educação Física</option>
+              <option value="Enfermagem">Enfermagem</option>
+              <option value="Engenharia Ambiental e Sanitária">Engenharia Ambiental e Sanitária</option>
+              <option value="Engenharia Civil">Engenharia Civil</option>
+              <option value="Engenharia de Alimentos">Engenharia de Alimentos</option>
+              <option value="Engenharia de Controle e Automação">Engenharia de Controle e Automação</option>
+              <option value="Engenharia de Produção">Engenharia de Produção</option>
+              <option value="Engenharia Elétrica">Engenharia Elétrica</option>
+              <option value="Engenharia Mecânica">Engenharia Mecânica</option>
+              <option value="Farmácia">Farmácia</option>
+              <option value="Fisioterapia">Fisioterapia</option>
+              <option value="Gastronomia">Gastronomia</option>
+              <option value="Gestão de TI<">Gestão de TI</option>
+              <option value="Gestão Financeira">Gestão Financeira</option>
+              <option value="Logística">Logística</option>
+              <option value="Manutenção Industrial">Manutenção Industrial</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Medicina">Medicina</option>
+              <option value="Nutrição">Nutrição</option>
+              <option value="Odontologia">Odontologia</option>
+              <option value="Processos Gerenciais">Processos Gerenciais</option>
+              <option value="Psicologia">Psicologia</option>
+              <option value="Radiologia">Radiologia</option>
+              <option value="Sistemas de Informação">Sistemas de Informação</option>
+              <option value="Terapia Ocupacional">Terapia Ocupacional</option>
+        </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="periodo">Periodo</label>
+          <select class="form-control" id="periodo" name="periodo" required>
+              <option value="">Selecione aqui</option>
+              <option value="1">1º</option>
+              <option value="2">2º</option>
+              <option value="3">3º</option>
+              <option value="4">4º</option>
+              <option value="5">5º</option>
+              <option value="6">6º</option>
+              <option value="7">7º</option>
+              <option value="8">8º</option>
+              <option value="9">9º</option>
+              <option value="10">10º</option>
+              <option value="11">11º</option>
+              <option value="12">12º</option>
+        </select>
+        </div>
+      </div>
+
+
+        <div class="form-row">
+             <div class="form-group col-md-4">
+                <label for="arquivo">Arquivo</label>
+                <input type="file" class="form-control-file" id="arquivo" name="arquivo" required>
+              </div>
+        </div>
+
+
+         <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="reset" class="btn btn-danger">Apagar</button>
+  </fieldset>
+</form>
+      </div>
+</section>
+</div>
+<script  src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+</section>
+
+
