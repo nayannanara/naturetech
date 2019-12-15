@@ -1,125 +1,226 @@
+@charset "UTF-8";
+
 body{
-    background-color: #f9fbff;
-    font-family: American;
-    font-size: 20px !important;
-    
-}
-.home-titulo{
-    margin-right: 50px;
-    color: #f4f2f2;
-    font-style: italic;
-    font-size: 18px;
-}
-.btn-custom {
-    margin-top: 20px;
-	border-radius: 40px;
+font-family:'Century gothic';
+background-color: #fff;
 }
 
-.navbar{
-    background-color: #0b2042 !important;
-    font-family:American;;
-}
-.navbar-nav li a{
-    color: #f4f2f2!important;
-}
-.navbar-nav li a:hover{
-    color: #6f8499 !important;
+h2{
+  font-size: 2.5rem;
+  text-align:center;
+  color: #034422;
 }
 
-#home img{
-    width: 400px;
-    height: 300px;
-    margin-top: 50px;
-    border-radius: 20px;
-
-}
-.titulo-home h3{
-    margin-top: 20px;
-    margin-left: 50px;
-    
+h4{
+  color: #034422;
 }
 
-#div-titulo h2{
-    text-align: left;
-    color: #0b2042;
-    margin-top: 50px;
+form label, p{
+  font-weight: normal !important;
 }
-#div-titulo h5{
-    text-align: justify;
-    margin-top: 25px;
-    margin-right: 15px;
+#navbarNav li:hover{
+  background-color: #fff;
 }
 
-#vagas{
-    margin-top: 70px;
+/*MENU*/
+.navbar-nav{
+  font-size: 1em;
+  font-weight:720;
 }
-h3{
-    color: #0b2042;
-    font-weight: bold;
-    margin: 0px 0px 15px;
+nav{
+   box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 }
-
-#anunciar-vaga{
-    border: 2px solid lightgray;
-    border-radius: 8px;
-    padding: 15px;
+.nav-item a{
+  text-align:left;
 }
-
-#cards{
-    margin-top: 20px;;
+.bg-light{
+  background-color: #fff!important;
 }
 
+.navbar-light,.navbar-nav .nav-item .nav-link {
+color:#034422;
+}
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show>.nav-link{
+  color: #034422;
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #034422;
+}
+
+.navbar-light .navbar-toggler{
+ border-color:transparent;
+}
+
+/*CAROUSEL*/
+.img-fluid{
+  max-width: 100%;
+  max-height: 680px;
+  height: auto;
+}
+section.carousel-inner .item{
+  height:100vh;
+}
+
+div.carousel-caption{
+  padding-bottom:260px;
+
+}
+.carousel-caption h2{
+  font-size: 45px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/*SERVIÇOS*/
 #servicos{
-    margin-top: 70px;
-    
+	margin-top: 100px;
+  margin-bottom: 100px;
 }
-#servicos img{
-    width: 100px;
-    height: 85px;
-    
+#sobreservicos h3{
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
-
-#vantagens{
-    margin-top: 70px;
-    
-}
-#vantagens img{
-    width: 105px;
-    height: 100px;
-    
+.info_img{
+  margin-top: 20px;
 }
 
 
-#row-servicos{
-    margin-top: 45px;
+/*PROPOSITO*/
+#proposito{
+  margin-top: 150px;
+  margin-bottom: 100px;
+}
+.card{
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: auto;
+  height: auto;
+  border:none;
+}
+.card h3{
+  color: #034422;
+  text-align: center;
+}
+.card h5{
+  font-size: 19px;
+  text-align: center;
 }
 
-#row-servicos1{
-    margin-top: 45px;
+/*PORTFÓLIO*/
+#portfolio{
+  margin-top: 150px;
+  margin-bottom: 100px;
+}
+#sectionport img{
+  margin-bottom: 70px;
+}
+.card_empresa{
+  border: 1px solid #ede7e6;
+  width: 280px;
+  height: 150px;
+}
+#card_empresain{
+  border: 1px solid #ede7e6;
+  width: 280px;
+  height: 150px;
+  margin-bottom: 70px;
+}
+#img_port img{
+  margin-top: 100px;
+  margin-bottom: 160px;
+}
+#sectionport{
+  margin: 0 auto;
+}
+#section_contato{
+  margin-bottom: 100px;
 }
 
-footer{
-    height: 100px;;
-    margin-top: 35px;
-    background-color: #020e21;
+/*CONTATO*/
+#v-pills-tabContent{
+  border: 1px solid #dfe6e0;
+  border-radius: 10px;
+  height: 350px;
 }
 
-footer p{
-    color: #f4f2f2;
-    text-align: center;
-    margin: 0 auto;
+#v-pills-home-tab{
+  text-align:center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #034422;
+  border-radius: 20px;
+  background-color:#FFFFFF;
+  padding: 10px 20px;
+  color: #034422;
+  margin-bottom: 15px;
 }
-#direitos1{
-    font-size: 15px;
-    padding:15px;
-    background-color: #020e21;
+
+#v-pills-profile-tab{
+  text-align:center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #034422;
+  border-radius: 20px;
+  background-color:#FFFFFF;
+  padding: 10px 20px;
+  color: #034422;
 }
-#direitos2{
-    font-size: 15px;
-    padding: 20px;
-    background-color: #020e21;
+
+button.btn.btn-primary{
+  color: #ffffff;
+  background-color:#034422;
+  border-color:#034422;
+  margin: 45px 0;
+  margin: 0 auto;
+  display:block;
 }
-hr{
-   margin-top: 0rem !important;
-   margin-bottom: 0rem !important;
+.menu{
+  width: 100%;
+  height: 50%;
+  background-color:#FFFFFF;
+
+}
+.menu ul{
+  list-style: none;
+  position: relative;
+}
+.menu ul li{
+  width: 150px;
+  float: left;
+}
+
+#contato{
+  margin-top: 150px;
+  margin-bottom: 100px;
+}
+
+#contate{
+  background-color: #034422;
+  color: #fff;
+}
+
+#contate:hover{
+  background-color: #4ce074;
+}
+
+/*RODAPÉ*/
+#rodapeinicial{
+  background-color: #034422;
+  color: #fff;
+  padding:20px 0;
+}
+#rodapeinicial p{
+  font-size: 1em !important;
+  color:#fff;
+}
+.display-4{
+  font-size:2.5rem;
+  font-weight:300;
+  line-height:1.2;
 }
