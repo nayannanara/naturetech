@@ -9,7 +9,6 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'naturetechjr.herokuapp.com/']
 
@@ -105,8 +104,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
         'static'
-]
-
-STATICFILES_DIRS = [
-    'static'
 ]
