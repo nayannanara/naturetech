@@ -190,6 +190,9 @@ button.btn.btn-primary{
   list-style: none;
   position: relative;
 }
+ul{
+   list-style: none;
+}
 .menu ul li{
   width: 150px;
   float: left;

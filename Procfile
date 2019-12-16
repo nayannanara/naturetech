@@ -1,0 +1,1 @@
+web: gunicorn naturetech.wsgi --log-file -
