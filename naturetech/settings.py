@@ -10,7 +10,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['localhost', 'naturetechjr.herokuapp.com/']
+ALLOWED_HOSTS = ['localhost', 'naturetechjr.herokuapp.com']
 
 
 # Application definition
